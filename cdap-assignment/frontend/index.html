@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CDAP Frontend</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 20px;
+      background-color: #f0f2f5;
+    }
+
+    h1 {
+      color: #2e7d32;
+    }
+
+    form {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    input, textarea, select {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 150px;
+    }
+
+    button:hover {
+      background-color: #1b5e20;
+    }
+
+    .result-box {
+      background-color: #f9f9f9;
+      border-left: 5px solid #2e7d32;
+      padding: 10px;
+      margin-bottom: 20px;
+      width: fit-content;
+      max-width: 600px;
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    hr {
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CDAP Assignment Frontend</h1>
+
+  <form id="uploadForm">
+    <h3>Upload CSV to ClickHouse</h3>
+    <input type="file" name="file" required>
+    <input type="text" name="host" placeholder="Host (e.g. localhost)" required>
+    <input type="number" name="port" placeholder="Port (e.g. 8123)" required>
+    <input type="text" name="database" placeholder="Database" required>
+    <input type="text" name="user" placeholder="User" required>
+    <input type="text" name="token" placeholder="Token (optional)">
+    <input type="text" name="table" placeholder="Table name" required>
+    <button type="submit">Upload</button>
+  </form>
+  <div id="uploadResult" class="result-box"></div>
+
+  <form id="listTablesForm">
+    <h3>List Tables from ClickHouse</h3>
+    <input type="text" name="host" placeholder="Host (e.g. localhost)" required>
+    <input type="number" name="port" placeholder="Port (e.g. 8123)" required>
+    <input type="text" name="database" placeholder="Database" required>
+    <input type="text" name="user" placeholder="User" required>
+    <input type="text" name="token" placeholder="Token (optional)">
+    <button type="submit">List Tables</button>
+  </form>
+  <div id="tableListResult" class="result-box"></div>
+
+  <form id="viewRowsForm">
+    <h3>View Table Rows</h3>
+    <input type="text" name="host" placeholder="Host (e.g. localhost)" required>
+    <input type="number" name="port" placeholder="Port (e.g. 8123)" required>
+    <input type="text" name="database" placeholder="Database" required>
+    <input type="text" name="user" placeholder="User" required>
+    <input type="text" name="token" placeholder="Token (optional)">
+    <input type="text" name="table" placeholder="Table name" required>
+    <button type="submit">View Rows</button>
+  </form>
+  <div id="tableRowsResult" class="result-box"></div>
+
+  <form id="filterForm">
+    <h3>Filter Rows</h3>
+    <input type="text" name="host" placeholder="Host (e.g. localhost)" required>
+    <input type="number" name="port" placeholder="Port (e.g. 8123)" required>
+    <input type="text" name="database" placeholder="Database" required>
+    <input type="text" name="user" placeholder="User" required>
+    <input type="text" name="token" placeholder="Token (optional)">
+    <label for="tableSelect">Table:</label>
+    <select name="table" id="tableSelect" required>
+      <option value="">--Loading--</option>
+    </select>
+    <input type="text" name="filters" placeholder="Filter condition (e.g. id > 100)">
+    <button type="submit">Filter</button>
+  </form>
+  <div id="filterResult" class="result-box"></div>
+
+  <form id="executeSqlForm">
+    <h3>Execute SQL Query</h3>
+    <textarea name="query" rows="4" placeholder="Enter SQL query here..." required></textarea>
+    <input type="text" name="host" placeholder="Host" value="localhost" required>
+    <input type="number" name="port" placeholder="Port" value="8123" required>
+    <input type="text" name="database" placeholder="Database" value="default" required>
+    <input type="text" name="user" placeholder="User" value="default" required>
+    <input type="text" name="token" placeholder="Token (optional)">
+    <button type="submit">Execute</button>
+  </form>
+  <div id="sqlResult" class="result-box"></div>
+
+  <form id="deleteRowForm">
+    <h3>Delete Row by ID</h3>
+    <input type="number" name="id" placeholder="Row ID to delete" required>
+    <input type="text" name="host" placeholder="Host" value="localhost" required>
+    <input type="number" name="port" placeholder="Port" value="8123" required>
+    <input type="text" name="database" placeholder="Database" value="default" required>
+    <input type="text" name="user" placeholder="User" value="default" required>
+    <input type="text" name="token" placeholder="Token (optional)">
+    <input type="text" name="table" placeholder="Table name" value="my_table" required>
+    <button type="submit">Delete Row</button>
+  </form>
+  <div id="deleteResult" class="result-box"></div>
+
+  <script src="script.js"></script>
+  <h3>Auto View Rows from Dropdown</h3>
+<select id="tableSelectView" class="form-select" required>
+  <option value="">--Select Table--</option>
+</select>
+<div id="autoViewTableResult" class="result-box"></div>
+
+</body>
+</html>

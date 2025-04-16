@@ -1,0 +1,4 @@
+com\ingestion\backend\ClickHouseController.class
+com\ingestion\backend\ClickHouseService.class
+com\ingestion\backend\HelloController.class
+com\ingestion\backend\BackendApplication.class
